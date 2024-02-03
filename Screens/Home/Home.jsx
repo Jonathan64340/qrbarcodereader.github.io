@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import Container from '../../components/Container/Container';
 import { styles } from './styles/Home.style';
-import { Button } from 'react-native-paper';
+import { Button, Icon, TouchableRipple } from 'react-native-paper';
 import Helper from '../../components/Helper/Helper';
 import { useTranslation } from 'react-i18next'
 
@@ -25,12 +25,20 @@ const Home = ({ navigation }) => {
     return (
         <Container>
             <View style={styles.container}>
-                <Button icon={'qrcode-scan'} mode="contained" style={styles.button} onPress={() => openScan('qr')}>
-                    <Text style={styles.buttonText}>{t('Scan Code QR')}</Text>
-                </Button>
-                <Button icon={'barcode-scan'} mode="contained" style={styles.button} onPress={() => openScan('bar')}>
-                    <Text style={styles.buttonText}>{t('Scan Code BAR')}</Text>
-                </Button>
+                <TouchableRipple style={styles.button} rippleColor={'white'}
+                    onPress={() => openScan('qr')}>
+                    <View mode="contained" style={styles.innerButton} onPress={() => openScan('qr')}>
+                        <Icon source={'qrcode-scan'} color='#FFFFFF' size={18} />
+                        <Text style={styles.buttonText}>{t('Scan Code QR')}</Text>
+                    </View>
+                </TouchableRipple>
+                <TouchableRipple style={styles.button} rippleColor={'white'}
+                    onPress={() => openScan('qr')}>
+                    <View mode="contained" style={styles.innerButton} onPress={() => openScan('bar')}>
+                        <Icon source={'barcode-scan'} color='#FFFFFF' size={18} />
+                        <Text style={styles.buttonText}>{t('Scan Code QR')}</Text>
+                    </View>
+                </TouchableRipple>
             </View>
             <Helper />
         </Container>

@@ -10,10 +10,22 @@ export const styles = StyleSheet.create({
     },
     button: {
         padding: 18,
-        width: Dimensions.get('screen').width / 1.2
+        width: Dimensions.get('screen').width / 1.2,
+        backgroundColor: '#240B3B',
+        borderRadius: 16,
+        height: 65
+    },
+    innerButton: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 12
     },
     buttonText: {
+        letterSpacing: -0.2,
+        alignItems: 'center',
         fontSize: 18,
-        letterSpacing: -0.2
+        color: 'white',
+        fontWeight: 'bold'
     }
 })
