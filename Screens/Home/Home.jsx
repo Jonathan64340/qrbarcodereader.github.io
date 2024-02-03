@@ -33,10 +33,10 @@ const Home = ({ navigation }) => {
                     </View>
                 </TouchableRipple>
                 <TouchableRipple style={styles.button} rippleColor={'white'}
-                    onPress={() => openScan('qr')}>
+                    onPress={() => openScan('bar')}>
                     <View mode="contained" style={styles.innerButton} onPress={() => openScan('bar')}>
                         <Icon source={'barcode-scan'} color='#FFFFFF' size={18} />
-                        <Text style={styles.buttonText}>{t('Scan Code QR')}</Text>
+                        <Text style={styles.buttonText}>{t('Scan Code BAR')}</Text>
                     </View>
                 </TouchableRipple>
             </View>

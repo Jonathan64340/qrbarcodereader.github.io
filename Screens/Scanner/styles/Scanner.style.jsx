@@ -17,13 +17,19 @@ export const styles = StyleSheet.create({
     cameraView: {
         borderRadius: 16,
         width: Dimensions.get('screen').width / 1.1,
-        height: Dimensions.get('screen').height / 2
+        height: Dimensions.get('screen').height / 2.5
     },
     animatedBar: {
         position: 'absolute',
         width: '100%',
         height: 5,
         backgroundColor: 'red',
+    },
+    buttons: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: 8
     },
     result: {
         borderRadius: 16,
