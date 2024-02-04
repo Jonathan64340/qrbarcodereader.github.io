@@ -11,5 +11,6 @@
     "Error during scanning, please retry": "Error during scanning, please retry",
     "You are about to visit a potentially dangerous website ({{url}}). Do you want to continue?": "You are about to visit a potentially dangerous website ({{url}}). Do you want to continue?",
     "I'm okay": "I'm okay",
-    "Cancel": "Cancel"
+    "Cancel": "Cancel",
+    "Back": "Back"
 }

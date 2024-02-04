@@ -80,7 +80,7 @@ const Scanner = ({ navigation, route, ...props }) => {
 
             setTimeout(() => setScanResult([]), 3000)
         }
-    }, [scanResult, visibleDialog]);
+    }, [scanResult]);
 
     const onScan = ({ data, scanResult }) => {
         if (scanResult.length < 5) {
@@ -160,12 +160,13 @@ const Scanner = ({ navigation, route, ...props }) => {
                     <Dialog.Icon icon="alert" size={48}  color={'#FF0000'}/>
                     <Dialog.Title style={styles.title}>{t('Warning')}</Dialog.Title>
                     <Dialog.Content>
-                        <Text variant="bodyMedium">{t('You are about to visit a potentially dangerous website ({{url}}). Do you want to continue?', { url: result[result.length - 1]?.text })}</Text>
+                        <Text variant="bodyMedium">{t('You are about to visit a potentially dangerous website ({{url}}). Do you want to continue?', { url: decodeURIComponent(result[result.length - 1]?.text) })}</Text>
                     </Dialog.Content>
                     <Dialog.Actions>
                         <Button mode='contained' onPress={() => setVisibleDialog(false)}>{t('Cancel')}</Button>
                         <Button mode='contained-tonal' onPress={() => {
-                            Linking.openURL(result[result.length - 1]?.text)
+                            Linking.openURL(decodeURIComponent(result[result.length - 1]?.text))
+                            setVisibleDialog(false)
                         }}>{t("I'm okay")}</Button>
                     </Dialog.Actions>
                 </Dialog>

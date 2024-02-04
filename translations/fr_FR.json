@@ -11,5 +11,6 @@
     "Error during scanning, please retry": "Une erreur est survenue durant le scan, veuillez ressayer",
     "You are about to visit a potentially dangerous website ({{url}}). Do you want to continue?": "Vous êtes sur le point de visiter un site web potentiellement dangereux ({{url}}). Voulez-vous continuer ?",
     "I'm okay": "Je suis sûre",
-    "Cancel": "Annuler"
+    "Cancel": "Annuler",
+    "Back": "Retour"
 }
