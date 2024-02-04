@@ -7,5 +7,9 @@
     "This QR code reader application offers you maximum convenience, but the responsibility for checking the security of the QR codes you scan lies entirely with the user.": "This QR code reader application offers you maximum convenience, but the responsibility for checking the security of the QR codes you scan lies entirely with the user.",
     "We accept no responsibility for any dispute, damage or problem resulting from the content of the scanned QR codes.": "We accept no responsibility for any dispute, damage or problem resulting from the content of the scanned QR codes.",
     "Be vigilant and make sure you scan codes from reliable sources. If in doubt, refrain from scanning the code.": "Be vigilant and make sure you scan codes from reliable sources. If in doubt, refrain from scanning the code.",
-    "Thank you for your understanding and caution!": "Thank you for your understanding and caution!"
+    "Thank you for your understanding and caution!": "Thank you for your understanding and caution!",
+    "Error during scanning, please retry": "Error during scanning, please retry",
+    "You are about to visit a potentially dangerous website ({{url}}). Do you want to continue?": "You are about to visit a potentially dangerous website ({{url}}). Do you want to continue?",
+    "I'm okay": "I'm okay",
+    "Cancel": "Cancel"
 }
