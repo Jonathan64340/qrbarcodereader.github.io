@@ -12,5 +12,8 @@
     "You are about to visit a potentially dangerous website ({{url}}). Do you want to continue?": "You are about to visit a potentially dangerous website ({{url}}). Do you want to continue?",
     "I'm okay": "I'm okay",
     "Cancel": "Cancel",
-    "Back": "Back"
+    "Back": "Back",
+    "Language": "Language",
+    "English": "English",
+    "French": "French"
 }

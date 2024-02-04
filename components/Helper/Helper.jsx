@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
-import { Modal, Portal, Text, Icon, TouchableRipple, Button, Divider } from 'react-native-paper';
+import { Modal, Portal, Text, Icon, TouchableRipple, Button, Divider, List } from 'react-native-paper';
 import { View } from 'react-native'
 import { styles } from './styles/Helper.style';
 import { useTranslation } from 'react-i18next'
 
 const Helper = () => {
 
-    const { t } = useTranslation()
+    const { t, i18n } = useTranslation()
 
     const [visible, setVisible] = useState(false);
+    const [visibleLanguage, setVisibleLanguage] = useState(false)
 
     const showModal = () => setVisible(true);
+    const showModalLanguage = () => setVisibleLanguage(true)
     const hideModal = () => setVisible(false);
+    const hideModalLanguage = () => setVisibleLanguage(false)
+    const changeLanguage = (lng) => {
+        i18n.changeLanguage(lng);
+    } 
 
     return (
         <>
@@ -28,10 +34,35 @@ const Helper = () => {
                     <Text>{t('Thank you for your understanding and caution!')}</Text>
                 </Modal>
             </Portal>
+            <Portal>
+                <Modal visible={visibleLanguage} contentContainerStyle={styles.modalStyle}>
+                    <View style={styles.modalHeader}>
+                        <Text style={styles.modalHeaderTitle}>{t('Language')}</Text>
+                        <Button mode='contained-tonal' onPress={hideModalLanguage}>{t('Close')}</Button>
+                    </View>
+                    <TouchableRipple onPress={() => changeLanguage('fr_FR')}>
+                        <List.Item
+                            title={'Français'}
+                        />
+                    </TouchableRipple>
+                    <Divider />
+                    <TouchableRipple onPress={() => changeLanguage('en_US')}>
+                        <List.Item
+                            title={'English'}
+                        />
+                    </TouchableRipple>
+                </Modal>
+            </Portal>
             {!visible ? <TouchableRipple style={styles.button} onPress={showModal}>
                 <Icon source={'information'} size={28} />
             </TouchableRipple> : <View style={styles.button}>
                 <Icon source={'information'} size={28} />
+            </View>}
+
+            {!visibleLanguage ? <TouchableRipple style={styles.buttonLanguage} onPress={showModalLanguage}>
+                <Icon source={'flag-variant'} size={28} />
+            </TouchableRipple> : <View style={styles.buttonLanguage}>
+                <Icon source={'flag-variant'} size={28} />
             </View>}
         </>
     )

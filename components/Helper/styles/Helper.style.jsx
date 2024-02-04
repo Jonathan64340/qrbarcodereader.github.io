@@ -27,5 +27,14 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         width: 32,
         height: 32
+    },
+    buttonLanguage: {
+        position: 'absolute',
+        top: 20,
+        left: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 32,
+        height: 32
     }
 })
