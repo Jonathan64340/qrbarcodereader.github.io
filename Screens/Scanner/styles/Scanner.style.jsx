@@ -45,7 +45,8 @@ export const styles = StyleSheet.create({
     textResult: {
         fontSize: 10,
         color: 'white',
-        letterSpacing: -0.02
+        letterSpacing: -0.02,
+        flex: 1
     },
     scrollView: {
         marginBottom: 40

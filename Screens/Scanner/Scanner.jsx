@@ -10,6 +10,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import uuid from 'react-uuid';
 import { Dialog, Portal, Text } from 'react-native-paper';
 import * as Linking from 'expo-linking';
+import * as Haptics from 'expo-haptics';
 
 
 const Scanner = ({ navigation, route, ...props }) => {
@@ -70,12 +71,14 @@ const Scanner = ({ navigation, route, ...props }) => {
         if (scanResult.length === 5 && !visibleDialog) {
             const uniqueScanResult = Array.from(new Set(scanResult));
             if (uniqueScanResult.length === 1) {
-                setResult(res => [...res, { text: uniqueScanResult[0], uid: uuid() }]);
+                setResult(res => [...res, { text: uniqueScanResult[0], uid: uuid() }].reverse());
                 if (isURL(uniqueScanResult[0])) {
                     setVisibleDialog(true)
                 }
+                Haptics.selectionAsync()
             } else {
                 setVisible(true)
+                Haptics.selectionAsync()
             }
 
             setTimeout(() => setScanResult([]), 3000)
@@ -91,7 +94,7 @@ const Scanner = ({ navigation, route, ...props }) => {
                 return undefined
             }
 
-            setScanResult(res => ([...res, typeof parsingData(data) === 'object' ? JSON.stringify(parsingData(data)) : parsingData(data)]))
+            setScanResult(res => ([...res, typeof parsingData(data) === 'object' ? JSON.stringify(parsingData(data)) : parsingData(data)].reverse()))
         }
     }
 
@@ -157,7 +160,7 @@ const Scanner = ({ navigation, route, ...props }) => {
             </Snackbar>
             <Portal>
                 <Dialog visible={visibleDialog} onDismiss={hideDialog}>
-                    <Dialog.Icon icon="alert" size={48}  color={'#FF0000'}/>
+                    <Dialog.Icon icon="alert" size={48} color={'#FF0000'} />
                     <Dialog.Title style={styles.title}>{t('Warning')}</Dialog.Title>
                     <Dialog.Content>
                         <Text variant="bodyMedium">{t('You are about to visit a potentially dangerous website ({{url}}). Do you want to continue?', { url: decodeURIComponent(result[result.length - 1]?.text) })}</Text>
