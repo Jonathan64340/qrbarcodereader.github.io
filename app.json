@@ -23,7 +23,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.spictor64.QrBarCodeScanner"
     },
     "android": {
       "adaptiveIcon": {
@@ -32,11 +33,24 @@
       },
       "android": {
         "package": "com.example.yourappname",
-        "permissions": ["READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"]
-      }
+        "permissions": [
+          "READ_EXTERNAL_STORAGE",
+          "WRITE_EXTERNAL_STORAGE"
+        ]
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.spictor64.QrBarCodeScanner"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "cbfc14a9-f88d-43bd-8c34-39e1bb1158b7"
+      }
     }
   }
 }
