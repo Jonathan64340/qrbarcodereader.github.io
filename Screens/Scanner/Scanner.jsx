@@ -1,12 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { View, Animated, Easing, Dimensions, Share } from 'react-native';
+import { View, Animated, Easing, Dimensions, Share, ScrollView } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera/next';
 import Container from '../../components/Container/Container';
 import { styles } from './styles/Scanner.style';
 import Backward from '../../components/Backward/Backward';
 import { Button, Divider, Icon, Snackbar, TouchableRipple } from 'react-native-paper';
 import { useTranslation } from 'react-i18next'
-import { ScrollView } from 'react-native-gesture-handler';
 import uuid from 'react-uuid';
 import { Dialog, Portal, Text } from 'react-native-paper';
 import * as Linking from 'expo-linking';
