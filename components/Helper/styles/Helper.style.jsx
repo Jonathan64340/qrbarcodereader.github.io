@@ -25,8 +25,8 @@ export const styles = StyleSheet.create({
         right: 20,
         alignItems: 'center',
         justifyContent: 'center',
-        width: 32,
-        height: 32
+        width: 48,
+        height: 48
     },
     buttonLanguage: {
         position: 'absolute',
@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
         left: 20,
         alignItems: 'center',
         justifyContent: 'center',
-        width: 32,
-        height: 32
+        width: 48,
+        height: 48
     }
 })

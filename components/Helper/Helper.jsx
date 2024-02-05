@@ -25,7 +25,7 @@ const Helper = () => {
                 <Modal visible={visible} contentContainerStyle={styles.modalStyle}>
                     <View style={styles.modalHeader}>
                         <Text style={styles.modalHeaderTitle}>{t('Warning')}</Text>
-                        <Button mode='contained-tonal' onPress={hideModal}>{t('Close')}</Button>
+                        <Button mode='contained-tonal' onPress={hideModal} accessibilityLabel={t('Close')}>{t('Close')}</Button>
                     </View>
                     <Text>{t('This QR code reader application offers you maximum convenience, but the responsibility for checking the security of the QR codes you scan lies entirely with the user.')}</Text>
                     <Text>{t('We accept no responsibility for any dispute, damage or problem resulting from the content of the scanned QR codes.')}</Text>
@@ -38,28 +38,30 @@ const Helper = () => {
                 <Modal visible={visibleLanguage} contentContainerStyle={styles.modalStyle}>
                     <View style={styles.modalHeader}>
                         <Text style={styles.modalHeaderTitle}>{t('Language')}</Text>
-                        <Button mode='contained-tonal' onPress={hideModalLanguage}>{t('Close')}</Button>
+                        <Button mode='contained-tonal' onPress={hideModalLanguage} accessibilityLabel={t('Close')}>{t('Close')}</Button>
                     </View>
                     <TouchableRipple onPress={() => changeLanguage('fr_FR')}>
                         <List.Item
                             title={'Français'}
+                            accessibilityLabel={t('French')}
                         />
                     </TouchableRipple>
                     <Divider />
                     <TouchableRipple onPress={() => changeLanguage('en_US')}>
                         <List.Item
                             title={'English'}
+                            accessibilityLabel={t('English')}
                         />
                     </TouchableRipple>
                 </Modal>
             </Portal>
-            {!visible ? <TouchableRipple style={styles.button} onPress={showModal}>
+            {!visible ? <TouchableRipple style={styles.button} onPress={showModal} accessibilityLabel={t('More informations')}>
                 <Icon source={'information'} size={28} />
             </TouchableRipple> : <View style={styles.button}>
                 <Icon source={'information'} size={28} />
             </View>}
 
-            {!visibleLanguage ? <TouchableRipple style={styles.buttonLanguage} onPress={showModalLanguage}>
+            {!visibleLanguage ? <TouchableRipple style={styles.buttonLanguage} onPress={showModalLanguage} accessibilityLabel={t('Change language')}>
                 <Icon source={'flag-variant'} size={28} />
             </TouchableRipple> : <View style={styles.buttonLanguage}>
                 <Icon source={'flag-variant'} size={28} />

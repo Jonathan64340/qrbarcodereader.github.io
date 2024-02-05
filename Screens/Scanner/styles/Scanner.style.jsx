@@ -25,29 +25,6 @@ export const styles = StyleSheet.create({
         height: 5,
         backgroundColor: 'red',
     },
-    buttons: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: 8
-    },
-    result: {
-        borderRadius: 16,
-        backgroundColor: '#240B3B',
-        width: Dimensions.get('screen').width / 1.1,
-        minHeight: 50,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: 16,
-        padding: 10
-    },
-    textResult: {
-        fontSize: 10,
-        color: 'white',
-        letterSpacing: -0.02,
-        flex: 1
-    },
     scrollView: {
         marginBottom: 40
     }

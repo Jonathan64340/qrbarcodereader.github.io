@@ -15,5 +15,13 @@
     "Back": "Back",
     "Language": "Language",
     "English": "English",
-    "French": "French"
+    "French": "French",
+    "Share": "Share",
+    "Delete": "Delete",
+    "Share {{data}}": "Share {{data}}",
+    "Delete {{data}}": "Delete {{data}}",
+    "Options": "Options",
+    "More informations": "More informations",
+    "Change language": "Change language",
+    "Open link {{data}}": "Open link {{data}}"
 }

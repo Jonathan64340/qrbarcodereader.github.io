@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Animated, Easing, Dimensions, Share, ScrollView } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera/next';
 import Container from '../../components/Container/Container';
@@ -10,6 +10,7 @@ import uuid from 'react-uuid';
 import { Dialog, Portal, Text } from 'react-native-paper';
 import * as Linking from 'expo-linking';
 import * as Haptics from 'expo-haptics';
+import ScanItem from '../../components/ScanItem/ScanItem';
 
 
 const Scanner = ({ navigation, route, ...props }) => {
@@ -26,15 +27,13 @@ const Scanner = ({ navigation, route, ...props }) => {
 
     const [visible, setVisible] = useState(false)
 
-    const [visibleDialog, setVisibleDialog] = useState(false)
+    const [visibleDialog, setVisibleDialog] = useState({})
 
     const onDismissSnackBar = () => setVisible(false)
 
     const [scanResult, setScanResult] = useState([])
 
-    const hideDialog = () => setVisible(false);
-
-    const scanRef = useRef([])
+    const hideDialog = () => setVisible('');
 
     useEffect(() => {
         Animated.loop(
@@ -46,6 +45,12 @@ const Scanner = ({ navigation, route, ...props }) => {
             })
         ).start();
     }, []);
+
+    useEffect(() => {
+        if (!permission?.granted) {
+            requestPermission()
+        }
+    }, [permission?.granted])
 
     const animatedStyle = {
         transform: [
@@ -60,19 +65,21 @@ const Scanner = ({ navigation, route, ...props }) => {
 
     function isURL(str) {
         // Expression régulière pour tester si la chaîne est une URL
-        const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+        const urlRegex = /^[^\s]+:\/\/[^\s/$.?#].[^\s]*$/i;
 
         // Teste la chaîne avec l'expression régulière
         return urlRegex.test(str);
     }
 
     useEffect(() => {
-        if (scanResult.length === 5 && !visibleDialog) {
+        if (scanResult.length === 5 && !visibleDialog.text) {
             const uniqueScanResult = Array.from(new Set(scanResult));
             if (uniqueScanResult.length === 1) {
-                setResult(res => [...res, { text: uniqueScanResult[0], uid: uuid() }].reverse());
                 if (isURL(uniqueScanResult[0])) {
-                    setVisibleDialog(true)
+                    setResult(res => [...res, { text: uniqueScanResult[0], uid: uuid(), type: 'link' }].reverse());
+                    setVisibleDialog({ text: uniqueScanResult[0], uid: uuid(), type: 'link' })
+                } else {
+                    setResult(res => [...res, { text: uniqueScanResult[0], uid: uuid() }].reverse());
                 }
                 Haptics.selectionAsync()
             } else {
@@ -108,40 +115,31 @@ const Scanner = ({ navigation, route, ...props }) => {
         setResult(r => ([...r.filter(s => s.uid !== res)]))
     }
 
+    const openLink = (link) => {
+        Linking.openURL(link)
+    }
+
     return (
         <Container>
             <View style={styles.container}>
                 <Backward navigation={navigation} mode={mode} />
                 <Divider bold />
                 <View style={styles.cameraContainer}>
-                    <CameraView style={styles.cameraView} barcodeScannerSettings={{
-                        barCodeTypes: [mode === 'qr' ? 'qr' : 'aztec',
-                            'ean13',
-                            'ean8',
-                            'pdf417',
-                            'upc_e',
-                            'datamatrix',
-                            'code39',
-                            'code93',
-                            'itf14',
-                            'codabar',
-                            'code128',
-                            'upc_a']
-                    }} onBarcodeScanned={data => onScan({ data, scanResult })} />
+                    {permission?.granted && <CameraView videoQuality={'720p'} style={styles.cameraView} {...(mode === 'qr' ? {
+                        barcodeScannerSettings: {
+                            barCodeTypes: ['qr']
+                        }
+                    } : {
+                        barcodeScannerSettings: {
+                            barCodeTypes: ['upc_e', 'upc_a', 'pdf417', 'itf14', 'ean8', 'ean13', 'datamatrix', 'code93', 'code39', 'code128', 'codabar', 'aztec']
+                        }
+                    })} onBarcodeScanned={data => onScan({ data, scanResult })} />}
                     <Animated.View style={[styles.animatedBar, animatedStyle]} />
                 </View>
                 {result.length ? <ScrollView style={styles.scrollView}>
                     <View style={styles.resultContainer}>
                         {Array.isArray(result) ? result.map((res, i) =>
-                            <View style={styles.result} key={i} ref={ref => scanRef.current[res.uid] = ref}>
-                                <Text style={styles.textResult} selectable selectionColor={'orange'}>{res.text}</Text>
-                                <View style={styles.buttons}>
-                                    <Button icon={'share-variant'} mode='contained-tonal' onPress={() => share(res.text)}>{t('share')}</Button>
-                                    <TouchableRipple onPress={() => deletElt(res.uid)}>
-                                        <Icon source={'trash-can'} color={'#FF0000'} size={28} />
-                                    </TouchableRipple>
-                                </View>
-                            </View>
+                            <ScanItem key={i} data={res} onDelete={deletElt} onShare={share} onOpenLink={openLink} />
                         ) : <View style={styles.result}>
                             <Text style={styles.textResult}>{result.text}</Text>
                         </View>
@@ -152,23 +150,21 @@ const Scanner = ({ navigation, route, ...props }) => {
             <Snackbar
                 visible={visible}
                 onDismiss={onDismissSnackBar}
-                action={{
-                    label: t('Warning')
-                }}>
+                duration={3000}>
                 {t('Error during scanning, please retry')}
             </Snackbar>
             <Portal>
-                <Dialog visible={visibleDialog} onDismiss={hideDialog}>
+                <Dialog visible={visibleDialog?.type === 'link'} onDismiss={hideDialog}>
                     <Dialog.Icon icon="alert" size={48} color={'#FF0000'} />
                     <Dialog.Title style={styles.title}>{t('Warning')}</Dialog.Title>
                     <Dialog.Content>
-                        <Text variant="bodyMedium">{t('You are about to visit a potentially dangerous website ({{url}}). Do you want to continue?', { url: decodeURIComponent(result[result.length - 1]?.text) })}</Text>
+                        <Text variant="bodyMedium">{t('You are about to visit a potentially dangerous website ({{url}}). Do you want to continue?', { url: decodeURIComponent(visibleDialog?.text) })}</Text>
                     </Dialog.Content>
                     <Dialog.Actions>
-                        <Button mode='contained' onPress={() => setVisibleDialog(false)}>{t('Cancel')}</Button>
+                        <Button mode='contained' onPress={() => setVisibleDialog({})}>{t('Cancel')}</Button>
                         <Button mode='contained-tonal' onPress={() => {
-                            Linking.openURL(decodeURIComponent(result[result.length - 1]?.text))
-                            setVisibleDialog(false)
+                            Linking.openURL(decodeURIComponent(visibleDialog.text))
+                            setVisibleDialog({})
                         }}>{t("I'm okay")}</Button>
                     </Dialog.Actions>
                 </Dialog>

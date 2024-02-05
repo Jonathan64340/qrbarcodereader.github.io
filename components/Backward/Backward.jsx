@@ -10,7 +10,7 @@ const Backward = ({ navigation, mode }) => {
     
     return (
         <View style={styles.container}>
-            <Button icon={'keyboard-backspace'} mode='contained' onPress={() => navigation.goBack()}>{t('Back')}</Button>
+            <Button icon={'keyboard-backspace'} mode='contained' onPress={() => navigation.goBack()} style={styles.button} accessibilityLabel={t('Back')}>{t('Back')}</Button>
             <Text>{mode === 'qr' ? t('Code QR') : t('Code BAR')}</Text>
         </View>
     )

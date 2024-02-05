@@ -15,5 +15,13 @@
     "Back": "Retour",
     "Language": "Langue",
     "English": "Anglais",
-    "French": "Français"
+    "French": "Français",
+    "Share": "Partager",
+    "Delete": "Supprimer",
+    "Share {{data}}": "Partager {{data}}",
+    "Delete {{data}}": "Supprimer {{data}}",
+    "Options": "Options",
+    "More informations": "Plus d'informations",
+    "Change language": "Changer de langue",
+    "Open link {{data}}": "Ouvrir le lien {{data}}"
 }
