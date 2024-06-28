@@ -35,7 +35,7 @@
         "android.permission.CAMERA"
       ],
       "package": "com.spictor64.QrBarCodeScanner",
-      "versionCode": 2
+      "versionCode": 4
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -9,7 +9,7 @@
     "Be vigilant and make sure you scan codes from reliable sources. If in doubt, refrain from scanning the code.": "Be vigilant and make sure you scan codes from reliable sources. If in doubt, refrain from scanning the code.",
     "Thank you for your understanding and caution!": "Thank you for your understanding and caution!",
     "Error during scanning, please retry": "Error during scanning, please retry",
-    "You are about to visit a potentially dangerous website ({{url}}). Do you want to continue?": "You are about to visit a potentially dangerous website ({{url}}). Do you want to continue?",
+    "You are about to visit a potentially dangerous website. Do you want to continue?": "You are about to visit a potentially dangerous website. Do you want to continue?",
     "I'm okay": "I'm okay",
     "Cancel": "Cancel",
     "Back": "Back",
@@ -23,5 +23,5 @@
     "Options": "Options",
     "More informations": "More informations",
     "Change language": "Change language",
-    "Open link {{data}}": "Open link {{data}}"
+    "Open link": "Open link"
 }

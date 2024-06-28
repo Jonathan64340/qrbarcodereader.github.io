@@ -26,7 +26,7 @@ const ScanItem = ({ data, onDelete, onOpenLink, onShare }) => {
             <Text style={styles.textResult} selectable selectionColor={'orange'}>{data.text}</Text>
             <View style={styles.buttons}>
                 {data?.type === 'link' ? <>
-                    <TouchableRipple rippleColor={'#FFFFFF'} onPress={() => onOpenLink(data.text)} accessibilityLabel={t('Open link {{data}}', { data: data.text })} style={styles.button}>
+                    <TouchableRipple rippleColor={'#FFFFFF'} onPress={() => onOpenLink(data.text)} accessibilityLabel={`${t('Open link')} ${data.text}`} style={styles.button}>
                         <Icon source={'earth'} color={'#FFFFFF'} size={16} />
                     </TouchableRipple>
                     <View style={styles.separator} />

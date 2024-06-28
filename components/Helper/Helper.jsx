@@ -17,7 +17,7 @@ const Helper = () => {
     const hideModalLanguage = () => setVisibleLanguage(false)
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
-    } 
+    }
 
     return (
         <>
@@ -56,9 +56,15 @@ const Helper = () => {
                 </Modal>
             </Portal>
             {!visible ? <TouchableRipple style={styles.button} onPress={showModal} accessibilityLabel={t('More informations')}>
-                <Icon source={'information'} size={28} />
+                <View style={styles.buttonConainer}>
+                    <Text>v 1.2.0</Text>
+                    <Icon source={'information'} size={28} />
+                </View>
             </TouchableRipple> : <View style={styles.button}>
-                <Icon source={'information'} size={28} />
+                <View style={styles.buttonConainer}>
+                    <Text>v 1.2.0</Text>
+                    <Icon source={'information'} size={28} />
+                </View>
             </View>}
 
             {!visibleLanguage ? <TouchableRipple style={styles.buttonLanguage} onPress={showModalLanguage} accessibilityLabel={t('Change language')}>

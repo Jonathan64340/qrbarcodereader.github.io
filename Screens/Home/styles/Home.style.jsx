@@ -13,7 +13,6 @@ export const styles = StyleSheet.create({
         width: Dimensions.get('screen').width / 1.2,
         backgroundColor: '#240B3B',
         borderRadius: 16,
-        height: 65
     },
     innerButton: {
         flexDirection: 'row',

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Animated, Easing, Dimensions, Share, ScrollView } from 'react-native';
-import { CameraView, useCameraPermissions } from 'expo-camera/next';
+import { CameraView, useCameraPermissions } from 'expo-camera';
 import Container from '../../components/Container/Container';
 import { styles } from './styles/Scanner.style';
 import Backward from '../../components/Backward/Backward';
@@ -158,13 +158,18 @@ const Scanner = ({ navigation, route, ...props }) => {
                     <Dialog.Icon icon="alert" size={48} color={'#FF0000'} />
                     <Dialog.Title style={styles.title}>{t('Warning')}</Dialog.Title>
                     <Dialog.Content>
-                        <Text variant="bodyMedium">{t('You are about to visit a potentially dangerous website ({{url}}). Do you want to continue?', { url: decodeURIComponent(visibleDialog?.text) })}</Text>
+                        <Text variant="bodyMedium">{t('You are about to visit a potentially dangerous website. Do you want to continue?')}</Text>
+                        <Text variant="labelLarge">{visibleDialog?.text}</Text>
                     </Dialog.Content>
                     <Dialog.Actions>
-                        <Button mode='contained' onPress={() => setVisibleDialog({})}>{t('Cancel')}</Button>
+                        <Button mode='contained' onPress={() => {
+                            setVisibleDialog({})
+                            setScanResult([])
+                        }}>{t('Cancel')}</Button>
                         <Button mode='contained-tonal' onPress={() => {
                             Linking.openURL(decodeURIComponent(visibleDialog.text))
                             setVisibleDialog({})
+                            setScanResult([])
                         }}>{t("I'm okay")}</Button>
                     </Dialog.Actions>
                 </Dialog>

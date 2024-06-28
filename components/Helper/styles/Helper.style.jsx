@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
         right: 20,
         alignItems: 'center',
         justifyContent: 'center',
-        width: 48,
+        width: 80,
         height: 48
     },
     buttonLanguage: {
@@ -36,5 +36,12 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         width: 48,
         height: 48
+    },
+    buttonConainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        gap: 8,
+        alignItems: 'center',
+        justifyContent: 'space-between'
     }
 })

@@ -9,7 +9,7 @@
     "Be vigilant and make sure you scan codes from reliable sources. If in doubt, refrain from scanning the code.": "Soyez vigilant et assurez-vous de scanner des codes provenant de sources fiables. En cas de doute, abstenez-vous de scanner le code.",
     "Thank you for your understanding and caution!": "Merci de votre compréhension et de votre prudence !",
     "Error during scanning, please retry": "Une erreur est survenue durant le scan, veuillez ressayer",
-    "You are about to visit a potentially dangerous website ({{url}}). Do you want to continue?": "Vous êtes sur le point de visiter un site web potentiellement dangereux ({{url}}). Voulez-vous continuer ?",
+    "You are about to visit a potentially dangerous website. Do you want to continue?": "Vous êtes sur le point de visiter un site web potentiellement dangereux. Voulez-vous continuer ?",
     "I'm okay": "Je suis sûre",
     "Cancel": "Annuler",
     "Back": "Retour",
@@ -23,5 +23,5 @@
     "Options": "Options",
     "More informations": "Plus d'informations",
     "Change language": "Changer de langue",
-    "Open link {{data}}": "Ouvrir le lien {{data}}"
+    "Open link": "Ouvrir le lien"
 }
