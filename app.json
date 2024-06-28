@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "QrBarCodeScanner",
+    "name": "QR BarCode Scanner",
     "slug": "QrBarCodeScanner",
     "version": "1.0.0",
     "orientation": "portrait",
