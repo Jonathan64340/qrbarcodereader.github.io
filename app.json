@@ -2,7 +2,7 @@
   "expo": {
     "name": "QR BarCode Scanner",
     "slug": "QrBarCodeScanner",
-    "version": "1.0.0",
+    "version": "1.2.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -35,7 +35,7 @@
         "android.permission.CAMERA"
       ],
       "package": "com.spictor64.QrBarCodeScanner",
-      "versionCode": 4
+      "versionCode": 5
     },
     "web": {
       "favicon": "./assets/favicon.png"

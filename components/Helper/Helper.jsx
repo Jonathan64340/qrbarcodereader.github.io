@@ -57,12 +57,12 @@ const Helper = () => {
             </Portal>
             {!visible ? <TouchableRipple style={styles.button} onPress={showModal} accessibilityLabel={t('More informations')}>
                 <View style={styles.buttonConainer}>
-                    <Text>v 1.2.0</Text>
+                    <Text>v 1.2.1</Text>
                     <Icon source={'information'} size={28} />
                 </View>
             </TouchableRipple> : <View style={styles.button}>
                 <View style={styles.buttonConainer}>
-                    <Text>v 1.2.0</Text>
+                    <Text>v 1.2.1</Text>
                     <Icon source={'information'} size={28} />
                 </View>
             </View>}
