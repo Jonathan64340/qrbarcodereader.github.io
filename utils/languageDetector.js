@@ -35,7 +35,7 @@ const languageDetector = {
         }
       }
     } else {
-      locale = NativeModules.I18nManager?.localeIdentifier.replace('-', '_') || ''
+      locale = NativeModules.I18nManager?.localeIdentifier?.replace('-', '_') || ''
     }
     
     if (supportedLanguages.includes(locale)) {

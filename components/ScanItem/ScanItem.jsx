@@ -4,7 +4,7 @@ import { Text, View } from 'react-native'
 import { Icon, Menu, TouchableRipple } from 'react-native-paper'
 import { styles } from './styles/ScanItem.style'
 
-const ScanItem = ({ data, onDelete, onOpenLink, onShare }) => {
+const ScanItem = ({ data, onDelete, onOpenLink, onShare, ...props }) => {
     const { t } = useTranslation()
     const [visible, setVisible] = useState(false)
 
@@ -22,7 +22,7 @@ const ScanItem = ({ data, onDelete, onOpenLink, onShare }) => {
     }
 
     return (
-        <View style={styles.result}>
+        <View style={{ ...styles.result, ...(props?.direction === 'top' ? { alignItems: 'flex-start', justifyContent: 'flex-end' } : {}) }}>
             <Text style={styles.textResult} selectable selectionColor={'orange'}>{data.text}</Text>
             <View style={styles.buttons}>
                 {data?.type === 'link' ? <>

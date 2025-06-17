@@ -1,8 +1,7 @@
-import React from 'react';
 import { Text, View } from 'react-native';
 import Container from '../../components/Container/Container';
 import { styles } from './styles/Home.style';
-import { Button, Icon, TouchableRipple } from 'react-native-paper';
+import { Icon, TouchableRipple } from 'react-native-paper';
 import Helper from '../../components/Helper/Helper';
 import { useTranslation } from 'react-i18next'
 
@@ -15,9 +14,13 @@ const Home = ({ navigation }) => {
             navigation.navigate('Scanner', {
                 mode: 'qr',
             })
-        } else {
+        } else if (mode === 'bar') {
             navigation.navigate('Scanner', {
                 mode: 'bar',
+            })
+        } else {
+            navigation.navigate('ScannerOCR', {
+                mode: 'ocr'
             })
         }
     }
@@ -37,6 +40,13 @@ const Home = ({ navigation }) => {
                     <View mode="contained" style={styles.innerButton} onPress={() => openScan('bar')}>
                         <Icon source={'barcode-scan'} color='#FFFFFF' size={18} />
                         <Text style={styles.buttonText}>{t('Scan Code BAR')}</Text>
+                    </View>
+                </TouchableRipple>
+                <TouchableRipple style={styles.button} rippleColor={'white'}
+                    onPress={() => openScan('ocr')} accessibilityLabel={('Scan OCR')}>
+                    <View mode="contained" style={styles.innerButton} onPress={() => openScan('ocr')}>
+                        <Icon source={'text'} color='#FFFFFF' size={18} />
+                        <Text style={styles.buttonText}>{t('Scan OCR')}</Text>
                     </View>
                 </TouchableRipple>
             </View>
