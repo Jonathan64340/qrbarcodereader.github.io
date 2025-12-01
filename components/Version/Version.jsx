@@ -9,7 +9,7 @@ const Version = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.textVersion}>Jonathan Mazières - {t('Version')} 1.3.1</Text>
+            <Text style={styles.textVersion}>Jonathan Mazières - {t('Version')} 1.4.0</Text>
         </View>
     )
 }

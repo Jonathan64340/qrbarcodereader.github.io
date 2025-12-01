@@ -36,7 +36,7 @@ const OCRScanner = ({ navigation, route, ...props }) => {
         setOCRUri('')
         try {
             const picture = await cameraRef?.current?.takePictureAsync()
-            // console.log(picture)
+
             const { uri } = picture
 
             const ocr = await TextRecognition.recognize(uri)
@@ -44,26 +44,20 @@ const OCRScanner = ({ navigation, route, ...props }) => {
             setOCRUri(uri)
 
             for (let block of ocr.blocks) {
-                // console.log('Block text:', block.text);
-                // console.log('Block frame:', block.frame);
 
                 setTimeout(() => {
                     setTextOCR(text => text += block.text += '\n')
                 }, getRandom(100, 50) * 100)
 
                 for (let line of block.lines) {
-                    // console.log('Line text:', line.text);
                     setTimeout(() => {
                         setTextOCR(text => text += line.text += ' ')
                     }, getRandom(130, 80) * 100)
-                    // console.log('Line frame:', line.frame);
                 }
             }
-            // console.log(ocr)
         } catch (err) {
             setOCRUri('')
             setTextOCR('')
-            // console.log(err)
         }
 
     }

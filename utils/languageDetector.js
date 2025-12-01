@@ -1,50 +1,46 @@
-import { NativeModules, Platform } from "react-native";
+import * as Localization from 'expo-localization'
+
+const supportedLanguages = [
+  'en_US',
+  'fr_FR'
+]
 
 const languageDetector = {
   type: 'languageDetector',
-  init: () => { },
-  cacheUserLanguage: () => { },
+  init: () => {},
+  cacheUserLanguage: () => {},
   detect: () => {
-    const defaultLang = 'en_US';
-    const supportedLanguages = [
-      'en_US',
-      'fr_FR'
-    ];
+    const defaultLang = 'en_US'
 
-    let locale = "";
+    const locales = Localization.getLocales()
+    if (Array.isArray(locales) && locales.length > 0) {
+      const localeObj = locales[0]
+      let { languageTag, languageCode, regionCode } = localeObj
 
-    if (Platform.OS === 'ios') {
-      const _locale = NativeModules.SettingsManager.settings.AppleLocale;
-      if (_locale) {
-        if (_locale.includes('-')) {
-          const splitLocale = _locale?.split('-');
-          locale = `${splitLocale[0]}_${splitLocale[0].toUpperCase()}`;
-        } else {
-          if (_locale.includes('_')) {
-            const splitLocale = _locale?.split('_');
-            locale = `${splitLocale[0]}_${splitLocale[0].toUpperCase()}`;
-          } else {
-            locale = `${_locale}_${_locale.toUpperCase()}`;
-          }
-        }
-      } else {
-        if (NativeModules.SettingsManager?.settings?.AppleLanguages[0]) {
-          locale = NativeModules.SettingsManager?.settings?.AppleLanguages[0].replace('-', '_');
-        } else {
-          locale = '';
-        }
+      if (!regionCode && languageTag.includes('-')) {
+        regionCode = languageTag.split('-')[1]
       }
-    } else {
-      locale = NativeModules.I18nManager?.localeIdentifier?.replace('-', '_') || ''
-    }
-    
-    if (supportedLanguages.includes(locale)) {
-      return locale;
+
+      let candidate = languageCode
+      if (regionCode) {
+        candidate = `${languageCode}_${regionCode.toUpperCase()}`
+      }
+
+      candidate = candidate.replace('-', '_')
+
+      if (supportedLanguages.includes(candidate)) {
+        return candidate
+      }
+
+      const base = languageCode
+      const match = supportedLanguages.find(l => l.startsWith(base))
+      if (match) {
+        return match
+      }
     }
 
-
-    return defaultLang;
-  },
+    return defaultLang
+  }
 }
 
-export { languageDetector };
+export { languageDetector }
